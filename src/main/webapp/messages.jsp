@@ -4,5 +4,8 @@
 <%
 	Chat server = (Chat) application.getAttribute("server");
 	String client = (String) session.getAttribute("client");
-	out.print(server.showMessages(client));
+	List<String> messages = server.getMessages(client);
+	for(String message : messages){
+		out.print("<p>" + message + "</p>");
+	}
 %>

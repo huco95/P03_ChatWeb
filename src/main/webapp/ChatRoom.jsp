@@ -7,7 +7,11 @@
 		client = request.getParameter("nickName");
 		server.registerClient(client);
 		session.setAttribute("client", client);
-	}else{
+	} else if (client.equals("")) {
+%>
+		<jsp:forward page="index.html" />
+<%
+	} else {
 		client = (String) session.getAttribute("client");
 		server = (Chat) application.getAttribute("server");
 	}
@@ -15,6 +19,7 @@
 
 <html>
 <head>
+<title>Chat Room</title>
 <script>
 	//Forzar el refresco del Iframe que muestra los mensajes
 	setInterval(refreshIframe, 5000); // establece el tiempo a 5 seg.
@@ -45,28 +50,29 @@
 			<input type="submit" value="Enviar">
 			<%
 				String message = request.getParameter("messageInput");
-				String nickname = request.getParameter("nicknameToBan");
+				String nicknameToBan = request.getParameter("nicknameToBan");
 				String banUnban = request.getParameter("banAcction");
 
-				if (nickname != null && banUnban != null) {
+				if (nicknameToBan != null && banUnban != null) {
 					if (banUnban.equals("ban")) {
 						//Accion de banear
-						System.out.println("ban");
+						server.ban(client, nicknameToBan);
 					} else {
 						//Accion de unban
-						System.out.println("unban");
+						server.unban(client, nicknameToBan);
 					}
 				} else if (message != null && !message.equals("")) {
 					System.out.println("enviando mensaje");
-					server.sendMessage("> " + client + ": " + message);
+					server.sendMessage(client + "> " + message);
 				}
 				session.setAttribute("servidor", server);
 			%>
 			<input type="reset" value="Borrar">
+			<a href="logout.jsp">Logout</a>
 		</div>
 
 		<p>Chat:</p>
-		<iframe id="messageOutput" src="messages.jsp"></iframe>
+		<iframe id="messageOutput" width="500" height="350" src="messages.jsp"></iframe>
 
 	</form>
 

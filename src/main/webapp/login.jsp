@@ -1,13 +1,15 @@
-<jsp:useBean id="prueba" scope="session" class="java.lang.String" />
 <%
-  if (request.getParameter("nickName").isEmpty() == false) {
-	  prueba = request.getParameter("nickName");
+	if (request.getParameter("nickName").isEmpty() == false) {
 %>
 
 <jsp:forward page="ChatRoom.jsp" />
 
-<% } else { %>
+<%
+	} else {
+%>
 
 <%@ include file="index.html"%>
 
-<% } %>
+<%
+	}
+%>
