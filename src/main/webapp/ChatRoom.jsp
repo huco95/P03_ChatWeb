@@ -65,7 +65,7 @@
 					System.out.println("enviando mensaje");
 					server.sendMessage(client + "> " + message);
 				}
-				session.setAttribute("servidor", server);
+				application.setAttribute("servidor", server);
 			%>
 			<input type="reset" value="Borrar">
 			<a href="logout.jsp">Logout</a>
