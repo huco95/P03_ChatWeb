@@ -62,8 +62,8 @@
 						server.unban(client, nicknameToBan);
 					}
 				} else if (message != null && !message.equals("")) {
-					System.out.println("enviando mensaje");
-					server.sendMessage(client + "> " + message);
+					System.out.println("Enviando mensaje");
+					server.sendMessage(client + " > " + message);
 				}
 				application.setAttribute("servidor", server);
 			%>
@@ -73,6 +73,8 @@
 
 		<p>Chat:</p>
 		<iframe id="messageOutput" width="500" height="350" src="messages.jsp"></iframe>
+		<div><a href="index.html">Inicio</a></div>
+		
 
 	</form>
 
