@@ -105,7 +105,6 @@ public class Chat {
 	public void ban(String nickname, String userToBan) {
 		HashSet<String> banList = new HashSet<String>();
 		List<String> messageList;
-		if(messages.containsKey(userToBan)){
 			if (baneados.containsKey(nickname)) {
 				banList = baneados.get(nickname);
 				banList.add(userToBan);
@@ -117,14 +116,7 @@ public class Chat {
 
 			messageList = messages.get(nickname);
 			messageList.add("admin > El usuario \"" + userToBan + "\" ha sido añadido a la lista de baneados.");
-			messages.put(nickname, messageList);
-		}else{
-			messageList = messages.get(nickname);
-			messageList.add("admin > El usuario \"" + userToBan + "\" no existe.");
-			messages.put(nickname, messageList);
-		}
-		
-
+			messages.put(nickname, messageList);	
 	}
 	
 	/**
